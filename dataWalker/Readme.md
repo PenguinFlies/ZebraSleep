@@ -8,6 +8,12 @@ For Scanning Files, that's it.
 import ReadData as rd
 rd.data_walker(THE_MINI_DIRECTORY_PARSER, THE_FILE_REGEX_FILTER, IGNORE_WHEN_DIRECTORY_IS_NOT_EXIST, VERBOSE)
 ```
+The format of THE_MINI_DIRECTORY_PARSER:
+
+```
+[[The First Directories, False(No Need to Parse by Regex)], [The Second Directory Regex Format, True(Need to Parse by Regex)], ...]
+```
+
 ## Example
 If you want to collect the files which are under ```radar```
 ```
