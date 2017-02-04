@@ -36,5 +36,5 @@ rd.data_walker([['/home/data_collection', False], ['*-*-*', True], ['radar', Fal
 Output
 
 ```
-[['/home/data_collection/16-06-01/radar', 2016-06-01T0000.jpg], ... ['/home/data_collection/16-06-31/radar', 2016-06-31T2356.jpg]
+[['/home/data_collection/16-06-01/radar', 2016-06-01T0000.jpg], ... ['/home/data_collection/16-06-31/radar', 2016-06-31T2356.jpg]]
 ```
