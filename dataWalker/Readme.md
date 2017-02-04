@@ -11,7 +11,7 @@ rd.data_walker(THE_MINI_DIRECTORY_PARSER, THE_FILE_REGEX_FILTER, IGNORE_WHEN_DIR
 The format of THE_MINI_DIRECTORY_PARSER:
 
 ```
-[[The First Directories, False(No Need to Parse by Regex)], [The Second Directory Regex Format, True(Need to Parse by Regex)], ...]
+[[The First Directories, False(No Need to be Parsed by Regex)], [The Second Directory Regex Format, True(Need to be Parsed by Regex)], ...]
 ```
 
 ## Example
