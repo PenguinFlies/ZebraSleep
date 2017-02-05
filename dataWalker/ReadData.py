@@ -1,11 +1,10 @@
 import os
 import glob
-import subprocess
+import magic
 
 def mime_guesser(path):
 
-	command = "/usr/bin/file -i {0}".format(path)
-	return str(subprocess.Popen(command, shell=True, stdout=subprocess.PIPE).communicate()[0].split()[1])[2:-2]
+	return magic.from_file(path, mime=True)	
 
 def data_walker (mini_directory_parser = [['/', False]], file_include_regex = '*', mime_types = '',  ignore_on_no_such_file = False, verbose = False):
 	
@@ -39,7 +38,7 @@ def data_walker (mini_directory_parser = [['/', False]], file_include_regex = '*
 			for y in range(len(now)):
 				recursive_mdp = mini_directory_parser
 				recursive_mdp[x] = [now[y][:-1], False]
-				result.extend(data_walker(recursive_mdp, file_include_regex, ignore_on_no_such_file, verbose))
+				result.extend(data_walker(recursive_mdp, file_include_regex, mime_types, ignore_on_no_such_file, verbose))
 
 	if not_exist == False:
 		current = sorted(glob.glob(file_include_regex))
@@ -47,7 +46,7 @@ def data_walker (mini_directory_parser = [['/', False]], file_include_regex = '*
 		for x in range(current_total):
 			if mime_types != '' and mime_types != mime_guesser(os.getcwd() + '/' + current[x]):
 				continue
-			result.extend([os.getcwd(), current[x]])
+			result.extend([[os.getcwd(), current[x]]])
 	if verbose:
 		print(now)
 	return result
