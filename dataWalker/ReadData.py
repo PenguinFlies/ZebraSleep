@@ -1,7 +1,13 @@
 import os
 import glob
+import subprocess
 
-def data_walker (mini_directory_parser = [['/', False]], file_include_regex = '*', ignore_on_no_such_file = False, verbose = False):
+def mime_guesser(path):
+
+	command = "/usr/bin/file -i {0}".format(path)
+	return str(subprocess.Popen(command, shell=True, stdout=subprocess.PIPE).communicate()[0].split()[1])[2:-2]
+
+def data_walker (mini_directory_parser = [['/', False]], file_include_regex = '*', mime_types = '',  ignore_on_no_such_file = False, verbose = False):
 	
 	""" Data Walker
 
@@ -9,6 +15,7 @@ def data_walker (mini_directory_parser = [['/', False]], file_include_regex = '*
 	----------
 	mini_directory_parser : 2D-list, the discovering rule.
 	file_include_regex : string, the file varients.
+	mime_types : string, optional (default = '') the mime_types, for strictly comparing the file type; default setting will only be compared by file_include_regex.
 	ignore_on_no_such_file : boolean, optional (default = False), True : continue to scan files while one of the path elements
 				in the mini_directory_parser are invalid.
 	verbose : boolean, optional (default = False), print the walker footage.
@@ -36,9 +43,12 @@ def data_walker (mini_directory_parser = [['/', False]], file_include_regex = '*
 
 	if not_exist == False:
 		current = sorted(glob.glob(file_include_regex))
-		for x in range(len(current)):
-			current[x] = [os.getcwd(),  current[x]]
-		result.extend(current)
+		current_total = len(current)
+		for x in range(current_total):
+			if mime_types != '' and mime_types != mime_guesser(os.getcwd() + '/' + current[x]):
+				continue
+			result.extend([os.getcwd(), current[x]])
 	if verbose:
 		print(now)
 	return result
+
