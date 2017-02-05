@@ -89,11 +89,12 @@ Output
 ['/home/data_collection/16-04-29/radar', '2016-04-29T23:30:00+08:00.jpg'],
 ['/home/data_collection/16-05-01/radar', '2016-05-01T00:12:00+08:00.jpg'],
 ...
-['/home/data_collection/16-05-01/radar', '2016-05-01T23:36:00+08:00.jpg']]
+['/home/data_collection/16-05-01/radar', '2016-05-01T23:36:00+08:00.jpg'],
+...]
 ```
 
 If you want to verify the real mime_type is equal to its extensions, using the ```MIME_TYPE```;
-the function would check the real mime type with unix ```file``` command and avoid the fake extensions name from adding to the return list.
+the function would check the real mime type and avoid the fake extensions name from adding to the return list.
 
 For example
 
