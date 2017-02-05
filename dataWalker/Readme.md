@@ -47,3 +47,11 @@ Output
 
 If you want to verify the real mime_type is equal to its extensions, using the ```MIME_TYPE```;
 the function would check the real mime type with unix ```file``` command and avoid the fake extensions name from adding to the return list.
+
+For example
+
+```python
+rd.data_walker([['/home', False]], '*.jpg', "image/jpeg", True, False)
+```
+
+The output will exclude the file extension "*.jpg" but the content isn't a valid image jpeg file.
